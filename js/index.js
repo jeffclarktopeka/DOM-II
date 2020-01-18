@@ -49,11 +49,11 @@ goDrag.addEventListener("drag", () => {
     goDrag.textContent = "GO!"
 })
 
-//When you right click Adventure Awaits it changes colors to purple.
+//When you right click Adventure Awaits it prevents context menu from appearing.
 
 const awaitsDragStart = document.querySelectorAll(".text-content h2").item(1);
-awaitsDragStart.addEventListener("dragstart", () => {
-    awaitsStart.style.color = "purple"
+awaitsDragStart.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
 })
 
 
@@ -75,6 +75,38 @@ window.addEventListener("scroll", () => {
 
 })
 
+//Adds black background to body and makes all text except for Nav White.
+
+const backProp = document.querySelector("body");
+backProp.addEventListener("click", (event) => {
+    event.target.style.backgroundColor = "black"
+    event.target.style.color = "white"
+})
+
+//Makes background for the sign up section turn grey.
+//Also stops the body event from triggering over its own event.
+
+const pickProp = document.querySelector(".content-pick");
+console.log(pickProp)
+pickProp.addEventListener("click", (event) => {
+    event.stopPropagation();
+    event.target.style.backgroundColor = "grey"
+})
+
+const navProp = document.querySelector("nav");
+navProp.addEventListener("click", (event) => {
+    event.stopPropagation();
+})
+
+//This will stop the nav from returning the page to the top.
+
+const navStopDefault = document.querySelectorAll(".nav-link");
+navStopDefault.forEach ( link => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+    })
+}) 
 
 
 
